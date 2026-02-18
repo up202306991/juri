@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Jogo de Cartas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .carta {
+            background-color: #222;
+            padding: 30px;
+            border-radius: 10px;
+            min-width: 350px;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 20px;
+            transition: 0.3s;
+            font-size: 18px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #ff4444;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+
+<div class="carta" id="carta">
+    Clica no botão para revelar uma carta.
+</div>
+
+<button onclick="revelarCarta()">Revelar Carta</button>
+
+<script>
+
+    // ==========================
+    // CARTAS EDITÁVEIS
+    // ==========================
+
+    const cartas = [
+
+"Um dia quero criar um parque temático baseado em ____.",
+"Fui despedido do meu último trabalho porque ____.",
+"Estou farto de ____.",
+"O meu dispositivo favorito de tortura é ____.",
+"____. Não tentes isto em casa.",
+"Sopa do Dia: Sopa de(a/o) ____.",
+"Toda a gente esquece-se de ____.",
+"Foram reportados vários homicídios, todos cometidos por ____.",
+"Irritei um polícia por ter reportado ____.",
+"O que é que os directores pornos usam para se masturbar? ____.",
+"Deviámos culpar ____ por tudo.",
+"Devia mesmo parar de pensar em ____.",
+"Resolução de Ano Novo: Menos ____, mais ____.",
+"O que é que os nortenhos comem ao pequeno almoço? ____.",
+"Quem é que está a bater à porta? ____.",
+"AVISO. ____ é agora proibido no local de trabalho.",
+"Toda a gente odeia ____.",
+"____ contra ____: O novo drama original produzido pela TVI.",
+"O meu amigo é viciado em ___! Ajudem!",
+"Eu dei-lhe o meu coração e ele deu-me ___.",
+"Dediquei maior parte da minha vida a ___. Que perda de tempo!",
+"Qual a coisa em que o sexo oposto é bom? ___.",
+"Um homem foi condenado a prisão perpétua depois de ser acusado de ___.",
+"___ é geralmente a principal causa de depressão.",
+"Uma pizza só é boa se for acabada com uma pitada de ___.",
+"Comecei a sentir-me velho depois de me juntar a ___.",
+"Nunca soube que ___ podia ser tão gratificante.",
+"Passei muitos dias na universidade a ____.",
+"Adivinha!?! Encontrei ____.",
+"Achas que os romanos tinham um Deus para ____?",
+"Segundo a última edição da revista Maria, qual a coisa que os homens mais desejam?",
+"____ queima 500 calorias numa hora.",
+"O novo bestseller: \"____\". Autor: ____.",
+"Na universidade quero estudar ____.",
+"As coisas que não deviam existir: ____, ____ e ____.",
+"Odeio admitir isto, mas já tive uma ereção devido a ____.",
+"____ é sobrevalorizado.",
+"Em pelo menos 3 países ____ é ilegal.",
+"Nunca pensei ver ____ na convenção de ____.",
+"Quando vou ao McDonalds peço sempre ____.",
+"____. É assim que o mundo vai acabar.",
+"Encontraram um poema não publicado de Fernando Pessoa com o título \"____\".",
+"Fui banido do Minipreço por ____.",
+"____ parece doloroso.",
+"Vou comprar ____.",
+"A melhor maneira de ter sexo é ___.",
+"Eu nem sempre bebo cerveja, mas quando bebo é porque ___.",
+"Vou ao Preço Certo levar duas cestas de ___ ao Fernando Mendes.",
+"Enquanto mijo gosto de ver ___.",
+"O Jorge Jesus trocou o Benfica pelo Sporting porque ___.",
+"O que é que eu fazia pelo Éder? ___!",
+"Se eu pudesse comia ___ a todas as refeições.",
+"___? Isso foi o que a tua mãe me disse ontem.",
+"A ementa de hoje do menu vegetariano é ___.",
+"O Governo Português investiu milhões de euros a pesquisar ___.",
+"Faz uma frase: ___ ___ ___.",
+"Não posso acreditar que ___ aconteceu-me outra vez.",
+"O melhor sítio para passar o dia? ___. Sem dúvida.",
+"Todos os bons livros de crimes devem ter ___.",
+"Não consigo acreditar que o meu próprio país tem orgulho em ___.",
+"Parece que afinal ___ era uma coisa comum de se fazer nos anos 60.",
+"www.___.pt",
+"O novo musical de Filipe La Féria: \"___.\"",
+"porque ____.",
+"um 10/10.",
+"____.",
+"Se houver algo estranho no teu bairro, quem vais chamar?",
+"Um dia vou ser o primeiro a criar ____.",
+"A minha escola precisa mesmo de um clube de ____.",
+"A minha coisa menos favorita neste planeta é ____.",
+"Não lugar como ____.",
+"Vamos fazer ____, e a Espanha vai pagar.",
+"Eu fui preso no Natal porque ____.",
+"____ é definitivamente um 10/10.",
+"Escola é para os/as ____.",
+"Se houver algo estranho no teu bairro, quem vais chamar?",
+"Um dia vou ser o primeiro a criar ____.",
+"A minha escola precisa mesmo de um clube de ____.",
+"A minha coisa menos favorita neste planeta é ____.",
+"Não lugar como ____.",
+"Vamos fazer ____, e a Espanha vai pagar.",
+"O maior desastre natural este ano envolveu ____.",
+"Oh não! Parece que apanhei ____.",
+"Eu acredito pessoalmente que ____ é contra o código moral humano.",
+"Se me tornar primeiro ministro vou tornar ____ legal.",
+"A minha nova paixão é ____.",
+"____ é agora legal em Portugal.",
+"Apenas os portugueses têm ____.",
+"Não vais ganhar o coração dela a fazer apenas ____.",
+"Taxistas em todo o país estão a protestar contra ____.",
+"Eu pedi ao meu dealer 10g de ___ mas em vez disso ele deu-me 10g de ___.",
+"No seu próximo filme, Joaquim de Almeida é ___.",
+"Adolescentes em todo o país não conseguem parar de ___.",
+"Para tornar a minha vida mais interessante comecei a fazer ___.",
+"___. Um sinal que o mundo está a acabar.",
+"Fazia-te um ___ de morrer e chorar por mais!",
+"Sabes se o(a) ___ vem?"
+
+    ];
+
+    function revelarCarta() {
+        const indiceAleatorio = Math.floor(Math.random() * cartas.length);
+        document.getElementById("carta").textContent = cartas[indiceAleatorio];
+    }
+
+</script>
+
+</body>
+</html>
